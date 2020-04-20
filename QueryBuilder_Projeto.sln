@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryBuilder_Projeto", "QueryBuilder_Projeto\QueryBuilder_Projeto.csproj", "{62713E36-4A6F-414D-9AEF-A7E7310B9FE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sws.LinqQueryBuilder", "Sws.LinqQueryBuilder\Sws.LinqQueryBuilder.csproj", "{BC2530D3-4FCA-47FE-B15F-28FBD54EF69A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D856820C-1C13-4CFC-AB57-BA16909CEA94}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62713E36-4A6F-414D-9AEF-A7E7310B9FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62713E36-4A6F-414D-9AEF-A7E7310B9FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62713E36-4A6F-414D-9AEF-A7E7310B9FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62713E36-4A6F-414D-9AEF-A7E7310B9FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2530D3-4FCA-47FE-B15F-28FBD54EF69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2530D3-4FCA-47FE-B15F-28FBD54EF69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2530D3-4FCA-47FE-B15F-28FBD54EF69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2530D3-4FCA-47FE-B15F-28FBD54EF69A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC77DC94-7A6E-49BD-9E20-60DF066F76C6}
+	EndGlobalSection
+EndGlobal

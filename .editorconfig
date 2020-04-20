@@ -1,0 +1,22 @@
+﻿[*.cs]
+
+# CA1063: Implement IDisposable Correctly
+dotnet_diagnostic.CA1063.severity = none
+
+# IDE0044: Adicionar modificador somente leitura
+dotnet_style_readonly_field = true:none
+
+# CA2100: Review SQL queries for security vulnerabilities
+dotnet_diagnostic.CA2100.severity = none
+
+# CA1031: Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+
+# IDE0060: Remover o parâmetro não utilizado
+dotnet_code_quality_unused_parameters = all:none
+
+# CA1034: Nested types should not be visible
+dotnet_diagnostic.CA1034.severity = none
+
+# CA3147: Mark Verb Handlers With Validate Antiforgery Token
+dotnet_diagnostic.CA3147.severity = none
