@@ -21,21 +21,17 @@ namespace QueryBuilder_Projeto.Models {
 
         public DataTable SqlCommandTable(string query)
         {
-            try
-            {
 
-                VerticaCommand cmd = new VerticaCommand(query, conn);
-                conn.Open();
+            VerticaCommand cmd = new VerticaCommand(query, conn);
+            conn.Open();
 
-                VerticaDataAdapter da = new VerticaDataAdapter(cmd);
-                DataTable data = new DataTable();
-                da.Fill(data);
-                conn.Close();
-                da.Dispose();
+            VerticaDataAdapter da = new VerticaDataAdapter(cmd);
+            DataTable data = new DataTable();
+            da.Fill(data);
+            conn.Close();
+            da.Dispose();
 
-                return data;
-            }
-            catch (Exception e) { throw new Exception("erro " + e.Message); }
+            return data;
         }
     }
 }
