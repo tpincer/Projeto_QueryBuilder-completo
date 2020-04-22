@@ -16,7 +16,7 @@ namespace QueryBuilder_Projeto.Controllers {
             StringBuilder builder = new StringBuilder();
 
             builder.Append("select table_name As Tabelas, ");
-            builder.Append(CriarHtmlA("table_name"));
+            builder.Append(CriarHtmlA("table_schema","table_name"));
             builder.Append(" from tables");
 
 
@@ -41,7 +41,7 @@ namespace QueryBuilder_Projeto.Controllers {
             builder.Append(" from columns c ");
             builder.Append("inner join tables t ");
             builder.Append("on c.table_id = t.table_id ");
-            builder.Append($"where t.table_name = '{Request.QueryString["Tabela"].SearchKeysDanger()}'");
+            builder.Append($"where t.table_name = '{Request.QueryString["Tabela"].SearchKeysDanger().Substring(Request.QueryString["Tabela"].SearchKeysDanger().IndexOf('.')+1)}'");
 
             CarregaTabelasVertica db = new CarregaTabelasVertica(TipoConexao.Conexao.Classe,
                 System.Configuration.ConfigurationManager.ConnectionStrings["ContextVertica"].ConnectionString.ToString());
@@ -60,7 +60,9 @@ namespace QueryBuilder_Projeto.Controllers {
             var tabela = Request.QueryString["Tabela"].SearchKeysDanger();
 
             if (tabela is null)
+            {
                 return View();
+            }
 
             var colunas = Request.QueryString["Colunas"].SearchKeysDanger();
             var strCol = ArrumarColunas(colunas);
@@ -69,16 +71,17 @@ namespace QueryBuilder_Projeto.Controllers {
 
             command.SearchKeysDanger();
 
-            var data = new CarregaTabelasVertica(TipoConexao.Conexao.Classe,
+            using (System.Data.DataTable data = new CarregaTabelasVertica(TipoConexao.Conexao.Classe,
                 System.Configuration.ConfigurationManager.ConnectionStrings["ContextVertica"]
-                .ConnectionString.ToString()).SqlCommandTable(command);
-
-            ViewBag.DefinicaoFiltros = data.Create().Serialize();
-            ViewBag.Tabelas = data.DataTableToHtmlTable(
-                new TableCssOptions()
-                {
-                    TableCss = "customers"
-                });
+                .ConnectionString.ToString()).SqlCommandTable(command))
+            {
+                ViewBag.DefinicaoFiltros = data.Create().Serialize();
+                ViewBag.Tabelas = data.DataTableToHtmlTable(
+                    new TableCssOptions()
+                    {
+                        TableCss = "customers"
+                    });
+            }
             ViewBag.Tab = tabela;
             ViewBag.Cols = strCol;
 
@@ -103,10 +106,10 @@ namespace QueryBuilder_Projeto.Controllers {
                 JsonRequestBehavior.AllowGet);
         }
 
-        private string CriarHtmlA(string coluna)
+        private string CriarHtmlA(string esquema,string coluna)
         {
             //return $" CONCAT('<a href=\"/Builder/Colunas?Tabela=\',{coluna}, '\">Selecionar<a>') As Post ";
-            return $" CONCAT(CONCAT('<a href=\"/Builder/Colunas?Tabela=\',{coluna}), '\">Selecionar<a>')  As Post";
+            return $" CONCAT(CONCAT('<a href=\"/Builder/Colunas?Tabela=\',{esquema}||'.'||{coluna}), '\">Selecionar<a>')  As Post";
         }
 
         private static string CriarHtmlInput(string coluna)
